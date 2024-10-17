@@ -20,6 +20,9 @@ namespace PlayerComponents
         private float _jumpButtonHoldTime;
 
         public bool IsMove => _direction != 0;
+        public float MoveDirection => _direction;
+        public float YVelocity => _rigidbody2D.velocity.y;
+        public bool IsGround => _groundCheck.IsTouching;
 
         public void SetDirectionX(float value)
         {

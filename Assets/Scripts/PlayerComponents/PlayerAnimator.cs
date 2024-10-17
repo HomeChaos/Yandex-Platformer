@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -8,13 +8,7 @@ namespace PlayerComponents
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private PlayerMovement _movement;
-
-        private Vector3 _lastPosition;
-
-        private void Start()
-        {
-            _lastPosition = transform.position;
-        }
+        [SerializeField] private float _playerScale = 1;
 
         [Button("Show Death")]
         public void ShowDeath()
@@ -34,17 +28,20 @@ namespace PlayerComponents
             _animator.SetTrigger(PlayerAnimationKeys.Reset);
         }
 
-        [SerializeField, ReadOnly] private float _vertical;
-        
         private void Update()
         {
-            var currentPosition = transform.position;
-            _vertical = _lastPosition.y - currentPosition.y;
-            
             _animator.SetBool(PlayerAnimationKeys.IsWalk, _movement.IsMove);
-            _animator.SetFloat(PlayerAnimationKeys.Vertical, _vertical);
+            _animator.SetBool(PlayerAnimationKeys.IsGround, _movement.IsGround);
+            _animator.SetFloat(PlayerAnimationKeys.Vertical, _movement.YVelocity);
+            UpdateLookForward(_movement.MoveDirection);
+        }
 
-            _lastPosition = currentPosition;
+        private void UpdateLookForward(float direction)
+        {
+            if (direction > 0)
+                transform.localScale = new Vector3(_playerScale, _playerScale, _playerScale);
+            else if (direction < 0)
+                transform.localScale = new Vector3(-_playerScale, _playerScale, _playerScale);
         }
     }
 }
