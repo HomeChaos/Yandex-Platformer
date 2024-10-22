@@ -18,7 +18,6 @@ namespace PlayerComponents
             _mainInput.Player.Movement.canceled += Move;
 
             _mainInput.Player.Jump.performed += JumpStart;
-            _mainInput.Player.Jump.canceled += JumpEnd;
         }
 
         private void OnDestroy()
@@ -27,17 +26,11 @@ namespace PlayerComponents
             _mainInput.Player.Movement.canceled -= Move;
 
             _mainInput.Player.Jump.performed -= JumpStart;
-            _mainInput.Player.Jump.canceled -= JumpEnd;
         }
 
         private void JumpStart(InputAction.CallbackContext context)
         {
             _playerMovement.StartJump();
-        }
-        
-        private void JumpEnd(InputAction.CallbackContext context)
-        {
-            _playerMovement.StopJump();
         }
 
         private void Move(InputAction.CallbackContext context)

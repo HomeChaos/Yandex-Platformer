@@ -26,6 +26,7 @@ namespace PlayerComponents
         public void Reset()
         {
             _animator.SetTrigger(PlayerAnimationKeys.Reset);
+            UpdateLookForward(0.1f);
         }
 
         private void Update()

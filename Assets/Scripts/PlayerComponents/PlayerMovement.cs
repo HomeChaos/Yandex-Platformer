@@ -1,16 +1,17 @@
-﻿using ColliderBased;
+﻿using System;
+using ColliderBased;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PlayerComponents
 {
     public class PlayerMovement : MonoBehaviour
     {
         [Header("Settings")] 
+        [SerializeField, ReadOnly] private bool _canMove;
         [SerializeField] private float _moveSpeed;
-        [Space]
-        [SerializeField] private float _minJumpForce = 5f;  // Сила прыжка при коротком нажатии
-        [SerializeField] private float _addJumpForce = 0.15f; // Добавочная сила прыжка при долгом удержании
-        [SerializeField] private float _jumpTimeMax = 0.2f; // Время, в течение которого можно удерживать прыжок
+        [SerializeField] private float _jumpForce = 5f;
         [Header("Components")] 
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private ColliderCheck _groundCheck;
@@ -24,6 +25,11 @@ namespace PlayerComponents
         public float YVelocity => _rigidbody2D.velocity.y;
         public bool IsGround => _groundCheck.IsTouching;
 
+        private void Start()
+        {
+            _canMove = true;
+        }
+
         public void SetDirectionX(float value)
         {
             _direction = value;
@@ -31,12 +37,23 @@ namespace PlayerComponents
 
         public void StartJump()
         {
-            if (_groundCheck.IsTouching && _isJumping == false)
+            if (_groundCheck.IsTouching)
             {
-                _isJumping = true;
-                _jumpButtonHoldTime = Time.time;
-                _rigidbody2D.AddForce(new Vector2(0f, _minJumpForce), ForceMode2D.Impulse);
+                _rigidbody2D.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
             }
+        }
+
+        public void Freeze()
+        {
+            _canMove = false;
+            _rigidbody2D.velocity = Vector2.zero;
+            _rigidbody2D.bodyType = RigidbodyType2D.Static;
+        }
+
+        public void UnFreeze()
+        {
+            _canMove = true;
+            _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         }
 
         public void StopJump()
@@ -46,28 +63,15 @@ namespace PlayerComponents
 
         private void Update()
         {
+            if (_canMove == false)
+                return;
+            
             Move();
-            Jump();
         }
 
         private void Move()
         {
             _rigidbody2D.velocity = new Vector2(_direction * _moveSpeed, _rigidbody2D.velocity.y);
-        }
-
-        private void Jump()
-        {
-            if (_isJumping)
-            {
-                if (Time.time - _jumpButtonHoldTime < _jumpTimeMax)
-                {
-                    _rigidbody2D.AddForce(new Vector2(0f, _addJumpForce), ForceMode2D.Impulse);
-                }
-                else
-                {
-                    _isJumping = false;
-                }
-            }
         }
     }
 }

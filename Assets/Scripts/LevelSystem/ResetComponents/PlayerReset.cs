@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using UnityEngine;
 
 namespace LevelSystem.ResetComponents
 {
@@ -6,7 +7,7 @@ namespace LevelSystem.ResetComponents
     public class PlayerReset : Resettable
     {
         [SerializeField] private Transform _startPoint;
-        
+
         public override void ApplyReset()
         {
             Event?.Invoke();
