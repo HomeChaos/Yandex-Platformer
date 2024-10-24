@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using BootstrapSystem;
 using Cinemachine;
 using DG.Tweening;
+using NaughtyAttributes;
 using PlayerComponents;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,7 +15,8 @@ namespace LevelSystem
         [SerializeField] private PlayerFreezer _playerFreezer;
         [SerializeField] private Transform _exitPoint;
         [SerializeField] private CinemachineBrain _cinemachineBrain;
-        
+        [SerializeField] private float _timeOfMove = 0.5f;
+
         private Resettable[] _components;
         private Coroutine _resetCoroutine;
         private Coroutine _leaveCoroutine;
@@ -23,6 +26,7 @@ namespace LevelSystem
             _components = FindObjectsOfType<Resettable>();
         }
 
+        [Button("Next Level")]
         public void OnPlayerExit()
         {
             if (_leaveCoroutine != null)
@@ -63,14 +67,14 @@ namespace LevelSystem
             _resetCoroutine = null;
         }
 
-        [SerializeField] private float _timeOfMove = 0.5f;
-        
         private IEnumerator ApplyLeaveLevelLogic()
         {
             _playerFreezer.gameObject.transform.DOMove(_exitPoint.position, _timeOfMove).SetEase(Ease.Linear);
             _playerFreezer.FreezeExit();
             yield return _curtain.ShowCurtain();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            var nextLeve = GameRoot.Instance.LevelConfig.GetNextLevel(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(nextLeve);
         }
     }
 }
