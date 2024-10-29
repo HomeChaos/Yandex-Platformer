@@ -23,6 +23,14 @@ namespace LevelSystem
         
         private void Awake()
         {
+#if UNITY_EDITOR
+            if (GameRoot.Instance == null)
+            {
+                BootstrapInitiator.InitBootstrap(SceneManager.GetActiveScene().name);
+                return;
+            }
+#endif
+            
             _components = FindObjectsOfType<Resettable>();
         }
 

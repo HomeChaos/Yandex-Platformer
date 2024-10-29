@@ -27,6 +27,14 @@ namespace BootstrapSystem
 
         private IEnumerator Start()
         {
+#if UNITY_EDITOR
+            if (string.IsNullOrEmpty(BootstrapInitiator.lastLoadScene) == false)
+            {
+                SceneManager.LoadScene(BootstrapInitiator.lastLoadScene);
+                yield break;
+            }
+#endif
+            
             LoadFirstScene();
             yield return null;
         }

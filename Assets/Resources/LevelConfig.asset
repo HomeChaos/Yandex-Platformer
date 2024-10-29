@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelSetup:
   - <StrLevel>k__BackingField: Bootstrap
+  - <StrLevel>k__BackingField: Menu
   - <StrLevel>k__BackingField: Test
   - <StrLevel>k__BackingField: Test 1
