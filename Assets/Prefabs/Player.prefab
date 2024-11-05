@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3124116527360618256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.38, y: -1.963, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -182,9 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canMove: 0
   _moveSpeed: 5
-  _minJumpForce: 5
-  _addJumpForce: 0.15
-  _jumpTimeMax: 0.2
+  _jumpForce: 11.5
   _rigidbody2D: {fileID: 3124116527360618258}
   _groundCheck: {fileID: 3124116525908499621}
 --- !u!50 &3124116527360618258
@@ -299,7 +297,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _startPoint: {fileID: 0}
-  _movement: {fileID: 3124116527360618259}
 --- !u!114 &4522976395792521915
 MonoBehaviour:
   m_ObjectHideFlags: 0
