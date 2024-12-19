@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
   _levelSetup:
-  - <StrLevel>k__BackingField: Bootstrap
   - <StrLevel>k__BackingField: Level 1
   - <StrLevel>k__BackingField: Level 2
+  - <StrLevel>k__BackingField: TestScene
