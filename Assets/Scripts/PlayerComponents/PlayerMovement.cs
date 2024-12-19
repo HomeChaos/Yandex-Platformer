@@ -1,6 +1,7 @@
 ﻿using System;
 using ColliderBased;
 using NaughtyAttributes;
+using Traps;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -76,7 +77,7 @@ namespace PlayerComponents
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Platform"))
+            if (other.TryGetComponent(out Platform platform))
             {
                 transform.SetParent(other.transform);
             }
@@ -84,7 +85,7 @@ namespace PlayerComponents
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag("Platform"))
+            if (other.GetComponent<Platform>() != null)
             {
                 transform.SetParent(null);
             }
