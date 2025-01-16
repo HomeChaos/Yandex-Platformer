@@ -73,21 +73,5 @@ namespace PlayerComponents
         {
             _rigidbody2D.velocity = new Vector2(_direction * _moveSpeed, _rigidbody2D.velocity.y);
         }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("Platform"))
-            {
-                transform.SetParent(other.transform);
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag("Platform"))
-            {
-                transform.SetParent(null);
-            }
-        }
     }
 }
