@@ -1,6 +1,7 @@
 ﻿using System;
 using ColliderBased;
 using NaughtyAttributes;
+using Traps;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -72,6 +73,22 @@ namespace PlayerComponents
         private void Move()
         {
             _rigidbody2D.velocity = new Vector2(_direction * _moveSpeed, _rigidbody2D.velocity.y);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.TryGetComponent(out Platform platform))
+            {
+                transform.SetParent(other.transform);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.GetComponent<Platform>() != null)
+            {
+                transform.SetParent(null);
+            }
         }
     }
 }

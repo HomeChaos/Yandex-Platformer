@@ -1,30 +1,30 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Collider2D))]
-public class Button : MonoBehaviour
+// PressedButton
+namespace LevelSystem
 {
-    [SerializeField] protected UnityEvent EnterEvent;
-    [SerializeField] private UnityEvent _enterAction;
-    [SerializeField] protected UnityEvent ExitEvent;
-    [SerializeField] private UnityEvent _exitAction;
+    [RequireComponent(typeof(Collider2D))]
+    public class Button : MonoBehaviour
+    {
+        [SerializeField] private UnityEvent _enterAction;
+        [SerializeField] private UnityEvent _exitAction;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Item") || collision.CompareTag("Player"))
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Кнопка активировалась");
-            _enterAction?.Invoke();
-            EnterEvent?.Invoke();
+            if (collision.CompareTag("Item") || collision.CompareTag("Player"))
+            {
+                Debug.Log("Кнопка активировалась");
+                _enterAction?.Invoke();
+            }
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Item") || collision.CompareTag("Player"))
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            Debug.Log("Кнопка деактивировалась");
-            _exitAction?.Invoke();
-            ExitEvent?.Invoke();
+            if (collision.CompareTag("Item") || collision.CompareTag("Player"))
+            {
+                Debug.Log("Кнопка деактивировалась");
+                _exitAction?.Invoke();
+            }
         }
     }
 }
