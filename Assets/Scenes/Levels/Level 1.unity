@@ -7832,7 +7832,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266886078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75553036, y: -1.4791299, z: -10}
+  m_LocalPosition: {x: -6.38, y: -1.463, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9460,7 +9460,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0005055666, y: 0.13361186}
+  m_Offset: {x: 0.01308459, y: 0.15122253}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9471,7 +9471,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0385549, y: 1.1513966}
+  m_Size: {x: 1.1945359, y: 1.186618}
   m_EdgeRadius: 0
 --- !u!212 &1156603532
 SpriteRenderer:
@@ -9564,10 +9564,6 @@ MonoBehaviour:
   _exitAction:
     m_PersistentCalls:
       m_Calls: []
-  _collider2D: {fileID: 1156603530}
-  _spriteRenderer: {fileID: 1156603532}
-  _spriteOff: {fileID: 21300000, guid: 1bd457a0e2336fd4095445fca54bd83f, type: 3}
-  _spriteOn: {fileID: 21300000, guid: 5d84b1a3bc1165a4c8caf61af7b31b20, type: 3}
 --- !u!114 &1169401115 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8132813193329628638, guid: f00f8122716090847b9f18e34c4c148a, type: 3}
@@ -9594,7 +9590,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1467877126}
   - component: {fileID: 1467877125}
-  - component: {fileID: 1467877128}
   - component: {fileID: 1467877127}
   - component: {fileID: 1467877124}
   - component: {fileID: 1467877123}
@@ -9735,18 +9730,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _startPoint: {fileID: 1824530084}
---- !u!114 &1467877128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467877122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1203f5af552748b4bc0d7419542ab59f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1712505664
 GameObject:
   m_ObjectHideFlags: 0
